@@ -18,6 +18,8 @@ from PIL import Image
 # def addData_all(role,country,state, lga, ward, pu, file, remark, type, lat, long, phone, email):
 import urllib.request
 import difflib
+import requests
+
 def ai(user,image,types):
     # user_data =user['user']
     
@@ -44,14 +46,14 @@ def ai(user,image,types):
     # extension = os.path.splitext(image)[1][1:]
     # if extension == 'pdf' or 'PDF':
     #     image = pdf2image
-    urllib.request.urlretrieve(
-                image,
-                "image.png")
+#     urllib.request.urlretrieve(
+#                 image,
+#                 "image.png")
             
-    source=Image.open("image.jpg")
+  
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
-    file_source=Image.open("image.jpg"),
+    file_source=Image.open(requests.get(url, stream=True).raw),
     features=[TextractFeatures.QUERIES,TextractFeatures.TABLES],
     queries=queries
 )
