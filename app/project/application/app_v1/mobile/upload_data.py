@@ -22,7 +22,9 @@ import requests
 from io import BytesIO
 from urllib.request import urlopen
 import io
-
+from PIL import Image
+import requests
+from io import BytesIO
 def ai(user,image,types):
     # user_data =user['user']
     
@@ -53,9 +55,8 @@ def ai(user,image,types):
 #                 image,
 #                 "image.png")
             
-    fd = urlopen(image)
-    image_file = io.BytesIO(fd.read())
-    img = Image.open(image_file)
+    response = requests.get(image)
+    img = Image.open(BytesIO(response.content))
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
     file_source=img,
