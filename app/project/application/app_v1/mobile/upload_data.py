@@ -19,6 +19,8 @@ from PIL import Image
 import urllib.request
 import difflib
 import requests
+from io import BytesIO
+
 
 def ai(user,image,types):
     # user_data =user['user']
@@ -50,10 +52,11 @@ def ai(user,image,types):
 #                 image,
 #                 "image.png")
             
-  
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
-    file_source=Image.open(requests.get(image, stream=True).raw),
+    file_source=img,
     features=[TextractFeatures.QUERIES,TextractFeatures.TABLES],
     queries=queries
 )
