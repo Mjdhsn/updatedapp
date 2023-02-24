@@ -53,7 +53,7 @@ def ai(user,image,types):
   
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
-    file_source=Image.open(requests.get(url, stream=True).raw),
+    file_source=Image.open(requests.get(image, stream=True).raw),
     features=[TextractFeatures.QUERIES,TextractFeatures.TABLES],
     queries=queries
 )
