@@ -20,7 +20,8 @@ import urllib.request
 import difflib
 import requests
 from io import BytesIO
-
+from urllib.request import urlopen
+import io
 
 def ai(user,image,types):
     # user_data =user['user']
@@ -52,8 +53,9 @@ def ai(user,image,types):
 #                 image,
 #                 "image.png")
             
-    response = requests.get(image)
-    img = Image.open(BytesIO(response.content))
+    fd = urlopen(image)
+    image_file = io.BytesIO(fd.read())
+    img = Image.open(image_file)
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
     file_source=img,
