@@ -59,7 +59,7 @@ def ai(user,image,types):
         f.write(response.content)        
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
-    file_source=Image.open('image.png'),
+    file_source=image,
     features=[TextractFeatures.QUERIES,TextractFeatures.TABLES],
     queries=queries
 )
