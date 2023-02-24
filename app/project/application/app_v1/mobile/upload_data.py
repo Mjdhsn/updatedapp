@@ -52,7 +52,7 @@ def ai(user,image,types):
 #                 image,
 #                 "image.png")
             
-    response = requests.get(url)
+    response = requests.get(image)
     img = Image.open(BytesIO(response.content))
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
