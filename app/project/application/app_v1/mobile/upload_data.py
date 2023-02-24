@@ -48,10 +48,10 @@ def ai(user,image,types):
                 image,
                 "image.png")
             
-    source=Image.open("image.png")
+    source=Image.open("image.jpg")
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
-    file_source=Image.open("image.png"),
+    file_source=Image.open("image.jpg"),
     features=[TextractFeatures.QUERIES,TextractFeatures.TABLES],
     queries=queries
 )
