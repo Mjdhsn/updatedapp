@@ -54,12 +54,14 @@ def ai(user,image,types):
 #     urllib.request.urlretrieve(
 #                 image,
 #                 "image.png")
-            
+#     response = requests.get(image)
+    with open("image.jpg", "wb") as f:
+        f.write(response.content)        
     response = requests.get(image)
     img = Image.open(BytesIO(response.content))
     extractor = Textractor(profile_name="default")
     document = extractor.analyze_document(
-    file_source=img,
+    file_source=Image.open('image.jpg'),
     features=[TextractFeatures.QUERIES,TextractFeatures.TABLES],
     queries=queries
 )
